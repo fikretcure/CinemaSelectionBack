@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('city_cinemas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("cinema_id");
-            $table->unsignedBigInteger("cities_id");
+            $table->unsignedBigInteger("city_id");
             $table->foreign('cinema_id')
                 ->references('id')
                 ->on('cinemas');
-            $table->foreign('cities_id')
+            $table->foreign('city_id')
                 ->references('id')
                 ->on('cities');
             $table->timestamps();
