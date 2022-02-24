@@ -1,0 +1,229 @@
+{
+	"info": {
+		"_postman_id": "467b0cb3-29cc-4fa7-81a7-2caca7ca3033",
+		"name": "CinemaSelectionAppV1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "City",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}city",
+							"host": [
+								"{{domain}}city"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cinemasAndFilmsByCity",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "2",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}city/cinemasAndFilmsByCity?city_id=3",
+							"host": [
+								"{{domain}}city"
+							],
+							"path": [
+								"cinemasAndFilmsByCity"
+							],
+							"query": [
+								{
+									"key": "city_id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cinema",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}cinema",
+							"host": [
+								"{{domain}}cinema"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Film",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}film",
+							"host": [
+								"{{domain}}film"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bilet",
+			"item": [
+				{
+					"name": "store",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"city_id\": \"1\",\r\n    \"cinema_id\": \"1\",\r\n    \"film_id\": \"1\",\r\n    \"user_id\": 1,\r\n    \"seats\": [\r\n        12\r\n        \r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}bilet",
+							"host": [
+								"{{domain}}bilet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "emptySeat",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"city_id\": \"1\",\r\n    \"cinema_id\": \"1\",\r\n    \"film_id\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}emptySeat",
+							"host": [
+								"{{domain}}emptySeat"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}api/auth/login",
+							"host": [
+								"{{domain}}api"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NCwiaWF0IjoxNjQ1NzIyODk2LCJleHAiOjE2NDU3MjM0OTZ9.YR8wktreuXRgqGDfsWEw-WaZvkLCdnR7rnlfUQfHbO0",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "x-access-token",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "domain",
+			"value": "http://127.0.0.1:8000/api/",
+			"type": "string"
+		}
+	]
+}
