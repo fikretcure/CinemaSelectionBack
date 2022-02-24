@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\CinemaController;
+use App\Http\Controllers\CityController;
+use App\Http\Controllers\FilmController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::apiResources([
+    'city' => CityController::class,
+    'cinema' => CinemaController::class,
+    'film' => FilmController::class,
+]);
