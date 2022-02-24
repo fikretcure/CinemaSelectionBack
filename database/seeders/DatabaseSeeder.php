@@ -7,9 +7,9 @@ use App\Models\CinemaFilm;
 use App\Models\City;
 use App\Models\CityCinemas;
 use App\Models\Film;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Artisan;
 
 class DatabaseSeeder extends Seeder
 {
@@ -63,5 +63,21 @@ class DatabaseSeeder extends Seeder
                 ]);
             });
         });
+        /*  */
+
+        $user = new user;
+        $user->first_name = 'ORHAN';
+        $user->last_name = 'ÜSKÜPLÜ';
+        $user->email = "orhan@gmail.com";
+        $user->password = Hash::make("orhan");
+        $user->save();
+        /*  */
+        $user_2 = new user;
+        $user_2->first_name = 'MELEK';
+        $user_2->last_name = 'YILDIRIM';
+        $user_2->email = "melek@gmail.com";
+        $user_2->password = Hash::make("melek");
+        $user_2->save();
+
     }
 }
