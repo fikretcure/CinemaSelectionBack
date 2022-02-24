@@ -19,7 +19,7 @@ class AuthController extends Controller
                 $data = [
                     'id' => $id,
                     'iat' => time(),
-                    "exp" => time() + 60 * 3
+                    "exp" => time() + 60 * 10
                 ];
                 break;
             case 'refresh':
