@@ -24,11 +24,10 @@ class AuthMiddleware extends Controller
                 break;
             default:
                 try {
-                    $decoded = JWT::decode("eyJpZCI6MiwiaWF0IjoxNjQ1NzEyNzUxLCJleHAiOjE2NDU3MTI5MzF9.kzLitv8V-62-3l8BgcBhzJF8tdJ6t6-H14o49UgcfXk", env('JWT_SECRET'), array('HS256'));
+                    $decoded = JWT::decode($request->header('x-access-token'), env('JWT_SECRET'), array('HS256'));
                     $request->request->add(['user_id' => $decoded->id]);
                     return $next($request);
                 } catch (\Throwable $th) {
-
                     try {
                         $decoded = JWT::decode($request->header('x-refresh-token'), env('JWT_SECRET'), array('HS256'));
                         $request->request->add(['user_id' => $decoded->id]);
