@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\BiletController;
 use App\Http\Controllers\CinemaController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\FilmController;
+use App\Http\Middleware\AuthMiddleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,8 +19,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::apiResources([
-    'city' => CityController::class,
-    'cinema' => CinemaController::class,
-    'film' => FilmController::class,
-]);
+
+Route::middleware(AuthMiddleware::class)->group(function () {
+
+    Route::get("emptySeat",[BiletController::class,"emptySeat"]);
+    Route::get("city/cinemasAndFilmsByCity",[CityController::class,"cinemasAndFilmsByCity"]);
+
+
+    Route::apiResources([
+        'city' => CityController::class,
+        'cinema' => CinemaController::class,
+        'film' => FilmController::class,
+        'bilet' => BiletController::class,
+    ]);
+});
