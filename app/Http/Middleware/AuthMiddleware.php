@@ -6,14 +6,15 @@ use App\Http\Controllers\Controller;
 use Closure;
 use Illuminate\Http\Request;
 use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
 class AuthMiddleware extends Controller
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request, Closure $next)
@@ -24,12 +25,12 @@ class AuthMiddleware extends Controller
                 break;
             default:
                 try {
-                    $decoded = JWT::decode($request->header('x-access-token'), env('JWT_SECRET'), array('HS256'));
+                    $decoded = JWT::decode($request->header('x-access-token'), new key(env('JWT_SECRET'), 'HS256'));
                     $request->request->add(['user_id' => $decoded->id]);
                     return $next($request);
                 } catch (\Throwable $th) {
                     try {
-                        $decoded = JWT::decode($request->header('x-refresh-token'), env('JWT_SECRET'), array('HS256'));
+                        $decoded = JWT::decode($request->header('x-refresh-token'), new key(env('JWT_SECRET'), 'HS256'));
                         $request->request->add(['user_id' => $decoded->id]);
                         return $next($request);
                     } catch (\Throwable $th) {
