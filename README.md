@@ -1,9 +1,10 @@
 
-## About Proje Version
+## Versions
 
 - Php : 8.1.2
 - Laravel : 9.2.0
 - Xampp : 8.1.2
+- Composer : 2.5.5
 
 ## Steps
     1-) git clone https://github.com/fikretcure/CinemaSelectionAppV1.git
