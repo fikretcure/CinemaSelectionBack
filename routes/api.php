@@ -23,7 +23,7 @@ Route::middleware(AuthMiddleware::class)->group(function () {
     Route::get("emptySeat", [BiletController::class, "emptySeat"]);
     Route::get("city/cinemasAndFilmsByCity", [CityController::class, "cinemasAndFilmsByCity"]);
     Route::controller(AuthController::class)->group(function () {
-        Route::post("auth/login", "login");
+        Route::post("auth/login", "login")->name("auth.login");
         Route::post("auth/check", "check");
     });
     Route::apiResources([
