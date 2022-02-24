@@ -60,7 +60,7 @@ class BiletController extends Controller
                 "seat"     => $item
             ]);
         });
-        return Bilet::count();
+        return  $this->try(Bilet::orderByDesc("id")->get());
     }
     /**
      * Display the specified resource.
