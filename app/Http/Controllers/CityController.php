@@ -15,7 +15,7 @@ class CityController extends Controller
     public function index()
     {
         return $this->try(City::all());
-     }
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -60,5 +60,9 @@ class CityController extends Controller
     public function destroy(City $city)
     {
         //
+    }
+    public function cinemasAndFilmsByCity(City $city, Request $request)
+    {
+        return  $this->try($city->where("id", $request->city_id)->with("cinemasByCity.cinemasByCityCinemas.cinemaFilms.film")->get());
     }
 }
